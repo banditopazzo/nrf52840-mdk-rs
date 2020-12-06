@@ -49,31 +49,11 @@ stack backtrace:
    9: 0x00000156 - Reset
 ```
 
-## Debugging with OpenOCD
-
-I was unable to get this working with the openocd that ships with
-ubuntu 18.04, but was able to hook up SWD to my JLink.  This thread
-is someone else having similar issues:
-
-https://devzone.nordicsemi.com/b/blog/posts/debugging-on-nrf52840-with-gdb-from-cli-on-linux
-
-## Debugging with JLink
-
-I hooked up my JLink using one of these breakouts:
-https://www.adafruit.com/product/2743
-
-| MDK   | SWD Breakout |
-| ----- | ------------ |
-| 3V3   | Vref         |
-| RST   | RST          |
-| SWDIO | SWIO         |
-| SWCLK | CLK          |
-| TDO   | SWO          |
-| GND   | GND x 3      |
-
-* Uncomment the `arm-none-eabi-gdb` runner in .cargo/config
-* Start your gdbserver
-* use `cargo run`
+## Getting softdevice OpenOCD
+* Get openocd
+* Download [SoftDevice S140](https://www.nordicsemi.com/Software-and-tools/Software/S140/Download) from Nordic. Supported versions are 7.x.x
+* Unzip Erase if you need to `openocd -f interface/cmsis-dap.cfg -f target/nrf52.cfg -c "init; reset halt; nrf51 mass_erase; exit"`
+* Upload softdevice `openocd -f interface/cmsis-dap.cfg -f target/nrf52.cfg -c "program s140_nrf52_7.0.1_softdevice.hex verify exit"`
 
 ## License
 

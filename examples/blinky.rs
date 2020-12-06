@@ -1,3 +1,18 @@
+//! Alternately flash the red, green and blue leds. Runs on top of softdevice
+//! but doesnt interact with it at all.
+//!
+//! Embassy requires nightly.
+//! cargo flash --release --example blinky
+//!
+//! Pinout
+//! BUTTON1 = SW1 = P1.6
+//! RESET = SW2 = P0.18
+//! LED0 (green) = P0.6
+//! LED1 (red) = P0.8
+//! LED1 (green) = P1.9
+//! LED1 (blue) = P0.12
+//! https://infocenter.nordicsemi.com/pdf/nRF52840_Dongle_User_Guide_v1.0.pdf
+
 #![no_main]
 #![no_std]
 
